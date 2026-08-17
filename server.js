@@ -18,7 +18,6 @@ app.get("/", (req, res)=> {
     mensaje: "api footsy funciona OK"});
 });
 
-app.use('/productos', productoRoutes);
 
 
 
