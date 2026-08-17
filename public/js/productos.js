@@ -20,7 +20,7 @@ const cargarProductos = async () => {
                             <td>
                                
 
-                                <button 
+                                <button onclick="editarProducto(${producto.id_producto})"
                                     class="btn btn-warning btn-sm">
                                     <i class="bi bi-pencil"> Editar</i>
                                 </button>
