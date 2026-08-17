@@ -44,3 +44,40 @@ export const obtenerProductoPorId = async (id) => {
 
     return productos[0];
 };
+
+//POST CREATE
+export const crearProducto = async (producto) => {
+    const {
+        codigoProducto,
+        nombreProducto,
+        descripcion,
+        marca,
+        precioVenta,
+        publicoObjetivo,
+        id_categoria
+    } = producto;
+
+    const [resultado] = await db.query(`
+        INSERT INTO producto
+        (
+            codigoProducto,
+            nombreProducto,
+            descripcion,
+            marca,
+            precioVenta,
+            publicoObjetivo,
+            id_categoria
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `, [
+        codigoProducto,
+        nombreProducto,
+        descripcion,
+        marca,
+        precioVenta,
+        publicoObjetivo,
+        id_categoria
+    ]);
+
+    return resultado.insertId;
+};

@@ -29,4 +29,22 @@ export const listarProductos = async (req, res) => {
             mensaje: 'Error al obtener el producto'
         });
     }
+    };
+
+    export const registrarProducto = async (req, res) => {
+    try {
+        const idProducto = await crearProducto(req.body);
+
+        res.status(201).json({
+            mensaje: 'Producto creado correctamente',
+            id_producto: idProducto
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: 'Error al crear el producto'
+        });
+    }
 };
