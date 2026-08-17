@@ -1,7 +1,10 @@
-import { obtenerProductos,
-    obtenerProductoPorId, 
-    crearProducto, 
-    actualizarProducto } from '../models/productoModel.js';
+import {
+    obtenerProductos,
+    obtenerProductoPorId,
+    crearProducto,
+    actualizarProducto,
+    eliminarProducto
+} from '../models/productoModel.js';
 
 export const listarProductos = async (req, res) => {
     try {
@@ -75,3 +78,27 @@ export const listarProductos = async (req, res) => {
             });
         }
     };
+
+    //DELETE 
+    export const borrarProducto = async (req, res) => {
+    try {
+        const filasAfectadas = await eliminarProducto(req.params.id);
+
+        if (filasAfectadas === 0) {
+            return res.status(404).json({
+                mensaje: 'Producto no encontrado'
+            });
+        }
+
+        res.status(200).json({
+            mensaje: 'Producto eliminado correctamente'
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: 'Error al eliminar el producto'
+        });
+    }
+};

@@ -60,7 +60,7 @@ export const crearProducto = async (producto) => {
     const [resultado] = await db.query(`
         INSERT INTO producto
         (
-            codigoProducto,
+            codigoProducto, 
             nombreProducto,
             descripcion,
             marca,
@@ -115,6 +115,16 @@ export const actualizarProducto = async (id, producto) => {
         id_categoria,
         id
     ]);
+
+    return resultado.affectedRows;
+};
+
+//DELETE 
+export const eliminarProducto = async (id) => {
+    const [resultado] = await db.query(`
+        DELETE FROM producto
+        WHERE id_producto = ?
+    `, [id]);
 
     return resultado.affectedRows;
 };
