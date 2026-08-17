@@ -3,15 +3,21 @@ import db from "./config/db.js";
 import productoRoutes from './routes/productoRoutes.js';
 import categoriaRoutes from "./routes/categoriaRoutes.js";
 import varianteProductoRoutes from "./routes/varianteProductoRoutes.js"
+import fotoProductoRoutes from './routes/fotoProductoRoutes.js';
 
 const app= express();
 const PORT = 3000; 
 
 
 app.use(express.json());
-app.use('/dashboard/productos', productoRoutes);
-app.use('/dashboard/categorias',categoriaRoutes);
-app.use('/dashboard/variantes', varianteProductoRoutes);
+app.use('/productos', productoRoutes);
+app.use('/categorias',categoriaRoutes);
+app.use('/variantes', varianteProductoRoutes);
+app.use('/fotos', fotoProductoRoutes);
+app.use(express.static('public'));
+//Express, permite que el navegador acceda directamente a los archivos que están dentro de la carpeta public.
+
+
 
 
 app.get("/", (req, res)=> {

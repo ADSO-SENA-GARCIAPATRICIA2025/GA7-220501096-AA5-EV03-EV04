@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Productos - Footsy</title>
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- estilos css -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                Footsy
+            </div>
+
+            <nav>
+
+
+    <a href="#">
+        <i class="bi bi-house"></i>
+        Dashboard
+    </a>
+
+    <p class="menu-title">
+        Tienda Virtual
+    </p>
+
+    <a href="#" class="active">
+        <i class="bi bi-grid"></i>
+        Productos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-box"></i>
+        Categorías
+    </a>
+
+    <a href="#">
+        <i class="bi bi-bag"></i>
+        Pedidos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-credit-card"></i>
+        Pagos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-bar-chart"></i>
+        Reportes
+    </a>
+
+    <a href="#">
+        <i class="bi bi-truck"></i>
+        Envíos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-people"></i>
+        Usuarios
+    </a>
+
+    <a href="#">
+        <i class="bi bi-gear"></i>
+        Configuraciones
+    </a>
+
+</nav>
+
+           
+
+        </aside>
+
+
+        <!-- CONTENIDO -->
+        <div class="content">
+
+            <!-- HEADER -->
+            <header class="topbar">
+
+                <input
+                    type="search"
+                    placeholder="Buscar..."
+                >
+
+                <div class="user">
+                    PG
+                </div>
+
+            </header>
+
+
+            <!-- MAIN -->
+            <main>
+
+                <h1>Productos</h1>
+
+                <section class="product-panel">
+
+                    <div class="panel-header">
+
+                        <h2>Lista Productos</h2>
+
+                        <input
+                            type="search"
+                            placeholder="Buscar producto..."
+                        >
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Público</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="listaProductos">
+
+                                <!-- JavaScript insertará los productos -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script src="./js/productos.js"></script>
+
+</body>
+
+</html>
