@@ -1,4 +1,6 @@
-import { obtenerProductos,obtenerProductoPorId } from '../models/productoModel.js';
+import { obtenerProductos,
+    obtenerProductoPorId, 
+    crearProducto } from '../models/productoModel.js';
 
 export const listarProductos = async (req, res) => {
     try {
