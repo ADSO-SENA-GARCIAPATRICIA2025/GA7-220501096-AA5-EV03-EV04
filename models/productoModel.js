@@ -81,3 +81,40 @@ export const crearProducto = async (producto) => {
 
     return resultado.insertId;
 };
+
+/// UPDATE
+export const actualizarProducto = async (id, producto) => {
+    const {
+        codigoProducto,
+        nombreProducto,
+        descripcion,
+        marca,
+        precioVenta,
+        publicoObjetivo,
+        id_categoria
+    } = producto;
+
+    const [resultado] = await db.query(`
+        UPDATE producto
+        SET
+            codigoProducto = ?,
+            nombreProducto = ?,
+            descripcion = ?,
+            marca = ?,
+            precioVenta = ?,
+            publicoObjetivo = ?,
+            id_categoria = ?
+        WHERE id_producto = ?
+    `, [
+        codigoProducto,
+        nombreProducto,
+        descripcion,
+        marca,
+        precioVenta,
+        publicoObjetivo,
+        id_categoria,
+        id
+    ]);
+
+    return resultado.affectedRows;
+};

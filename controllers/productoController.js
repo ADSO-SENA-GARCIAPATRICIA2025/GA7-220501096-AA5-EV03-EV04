@@ -1,6 +1,7 @@
 import { obtenerProductos,
     obtenerProductoPorId, 
-    crearProducto } from '../models/productoModel.js';
+    crearProducto, 
+    actualizarProducto } from '../models/productoModel.js';
 
 export const listarProductos = async (req, res) => {
     try {
@@ -48,3 +49,29 @@ export const listarProductos = async (req, res) => {
         });
     }
 };
+
+    export const modificarProducto = async (req, res) => {
+        try {
+            const filasAfectadas = await actualizarProducto(
+                req.params.id,
+                req.body
+            );
+
+            if (filasAfectadas === 0) {
+                return res.status(404).json({
+                    mensaje: 'Producto no encontrado'
+                });
+            }
+
+            res.status(200).json({
+                mensaje: 'Producto actualizado correctamente'
+            });
+
+        } catch (error) {
+            console.error(error);
+
+            res.status(500).json({
+                mensaje: 'Error al actualizar el producto'
+            });
+        }
+    };
