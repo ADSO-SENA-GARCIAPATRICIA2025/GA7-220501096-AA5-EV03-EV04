@@ -1,7 +1,7 @@
 import express from "express"; 
 import db from "./config/db.js"; 
 import productoRoutes from './routes/productoRoutes.js';
-
+import categoriaRoutes from "./routes/categoriaRoutes.js";
 
 const app= express();
 const PORT = 3000; 
@@ -9,7 +9,7 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use('/productos', productoRoutes);
-
+app.use('/categorias',categoriaRoutes);
 
 
 
