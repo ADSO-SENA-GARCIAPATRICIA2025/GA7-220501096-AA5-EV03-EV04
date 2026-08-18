@@ -2,6 +2,10 @@ const listaProductos = document.getElementById('listaProductos');
 const buscadorCodigo = document.getElementById('buscarCodigo');
 let productos = [];
 
+// Solo cambia la presentación en pantalla; no modifica el valor usado en cálculos.
+const formatearPrecio = (precio) =>
+    new Intl.NumberFormat('es-CO', { maximumFractionDigits: 0 }).format(Number(precio));
+
 const mostrarProductos = (productosAMostrar) => {
     if (productosAMostrar.length === 0) {
         listaProductos.innerHTML = '<tr><td colspan="8">No se encontraron productos con ese código.</td></tr>';
@@ -14,7 +18,7 @@ const mostrarProductos = (productosAMostrar) => {
             <td>${producto.nombreProducto}</td>
             <td>${producto.marca}</td>
             <td>${producto.categoria}</td>
-            <td>$${producto.precioVenta}</td>
+            <td>${formatearPrecio(producto.precioVenta)}</td>
             <td>${producto.publicoObjetivo}</td>
             <td>${producto.estadoActivo}</td>
             <td>
