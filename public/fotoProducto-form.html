@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar foto - Footsy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <main class="main-content">
+        <div class="page-header">
+            <div>
+                <h1>Editar foto</h1>
+                <p>Actualiza la URL, el orden o el estado de la imagen.</p>
+            </div>
+            <a id="volverFotos" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver a fotos</a>
+        </div>
+
+        <div class="form-card">
+            <form id="formFoto">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="urlFoto">URL de la imagen</label>
+                        <input type="url" id="urlFoto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="orden">Orden de visualización</label>
+                        <input type="number" id="orden" class="form-control" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estadoActivo">Estado</label>
+                        <select id="estadoActivo" class="form-select" required>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <a id="cancelarFoto" class="btn btn-outline-secondary">Cancelar</a>
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-floppy"></i> Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="./js/fotoProducto-form.js"></script>
+</body>
+</html>

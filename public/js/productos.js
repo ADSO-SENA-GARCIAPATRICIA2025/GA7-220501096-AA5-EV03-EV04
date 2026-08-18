@@ -1,46 +1,64 @@
-
 const listaProductos = document.getElementById('listaProductos');
+const buscadorCodigo = document.getElementById('buscarCodigo');
+let productos = [];
 
+const mostrarProductos = (productosAMostrar) => {
+    if (productosAMostrar.length === 0) {
+        listaProductos.innerHTML = '<tr><td colspan="8">No se encontraron productos con ese código.</td></tr>';
+        return;
+    }
+
+    listaProductos.innerHTML = productosAMostrar.map((producto) => `
+        <tr>
+            <td>${producto.codigoProducto}</td>
+            <td>${producto.nombreProducto}</td>
+            <td>${producto.marca}</td>
+            <td>${producto.categoria}</td>
+            <td>$${producto.precioVenta}</td>
+            <td>${producto.publicoObjetivo}</td>
+            <td>${producto.estadoActivo}</td>
+            <td>
+                <a href="./producto-form.html?id=${producto.id_producto}" class="btn btn-warning btn-sm">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                <a href="./variantes.html?productoId=${producto.id_producto}" class="btn btn-info btn-sm">
+                    <i class="bi bi-layers"></i> Variantes
+                </a>
+                <a href="./fotoProducto.html?productoId=${producto.id_producto}" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-images"></i> Fotos
+                </a>
+                <button class="btn btn-danger btn-sm btn-eliminar"
+                    data-id="${producto.id_producto}" data-nombre="${producto.nombreProducto}">
+                    <i class="bi bi-trash"></i> Eliminar
+                </button>
+            </td>
+        </tr>
+    `).join('');
+};
 
 const cargarProductos = async () => {
     try {
         const respuesta = await fetch('/api/productos');
-        const productos = await respuesta.json();
+        if (!respuesta.ok) throw new Error('No se pudieron cargar los productos');
 
-        listaProductos.innerHTML = '';
-
-                        productos.forEach(producto => {
-                    listaProductos.innerHTML += `
-                        <tr>
-                            <td>${producto.codigoProducto}</td>
-                            <td>${producto.nombreProducto}</td>
-                            <td>${producto.marca}</td>
-                            <td>${producto.categoria}</td>
-                            <td>$${producto.precioVenta}</td>
-                            <td>${producto.publicoObjetivo}</td>
-                            <td>${producto.estadoActivo}</td>
-                            <td>
-                               
-
-                               <a href="./producto-form.html?id=${producto.id_producto}"
-                                    class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil"></i> Editar
-                                    </a>
-                                <button
-                                    class="btn btn-danger btn-sm btn-eliminar"
-                                    data-id="${producto.id_producto}"
-                                    data-nombre="${producto.nombreProducto}">
-                                    <i class="bi bi-trash"></i> Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
-
+        productos = await respuesta.json();
+        const termino = buscadorCodigo.value.trim().toLowerCase();
+        mostrarProductos(productos.filter((producto) =>
+            producto.codigoProducto.toLowerCase().includes(termino)
+        ));
     } catch (error) {
         console.error('Error al cargar los productos:', error);
+        listaProductos.innerHTML = '<tr><td colspan="8">No se pudieron cargar los productos.</td></tr>';
     }
 };
+
+buscadorCodigo.addEventListener('input', () => {
+    const termino = buscadorCodigo.value.trim().toLowerCase();
+    const coincidencias = productos.filter((producto) =>
+        producto.codigoProducto.toLowerCase().includes(termino)
+    );
+    mostrarProductos(coincidencias);
+});
 
 listaProductos.addEventListener('click', async (evento) => {
     const botonEliminar = evento.target.closest('.btn-eliminar');
@@ -56,10 +74,7 @@ listaProductos.addEventListener('click', async (evento) => {
         botonEliminar.disabled = true;
         const respuesta = await fetch(`/api/productos/${id}`, { method: 'DELETE' });
         const resultado = await respuesta.json();
-
-        if (!respuesta.ok) {
-            throw new Error(resultado.mensaje || 'No se pudo eliminar el producto');
-        }
+        if (!respuesta.ok) throw new Error(resultado.mensaje || 'No se pudo eliminar el producto');
 
         await cargarProductos();
     } catch (error) {
