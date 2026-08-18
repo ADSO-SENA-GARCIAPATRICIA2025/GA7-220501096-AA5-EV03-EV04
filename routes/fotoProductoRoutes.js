@@ -2,6 +2,7 @@ import express from 'express';
 
 import {
     listarFotos,
+    listarFotosPorProducto,
     buscarFotoPorId,
     registrarFoto,
     modificarFoto,
@@ -11,6 +12,7 @@ import {
 const router = express.Router();
 
 router.get('/', listarFotos);
+router.get('/producto/:productoId', listarFotosPorProducto);
 router.get('/:id', buscarFotoPorId);
 router.post('/', registrarFoto);
 router.put('/:id', modificarFoto);

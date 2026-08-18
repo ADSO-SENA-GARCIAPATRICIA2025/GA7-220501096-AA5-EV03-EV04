@@ -95,7 +95,7 @@
 
                 <div>
                     <h1 id="tituloFormulario">Editar producto</h1>
-                    <p>Modifica la información del producto seleccionado.</p>
+                    <p id="descripcionFormulario">Modifica la información del producto seleccionado.</p>
                 </div>
 
                 <a href="./producto.html"
@@ -253,6 +253,13 @@
                         </div>
                     </section>
 
+                    <!-- FOTOS DEL PRODUCTO -->
+                    <section id="seccionFotos" hidden>
+                        <h2 class="mt-4">Imágenes del producto</h2>
+                        <p>Galería de fotos registradas para este producto.</p>
+                        <div id="galeriaFotos" class="galeria-fotos"></div>
+                    </section>
+
 
                     <!-- BOTONES -->
                     <div class="form-actions">
@@ -263,7 +270,8 @@
                         </a>
 
                         <button type="submit"
-                                class="btn btn-primary">
+                                class="btn btn-primary"
+                                id="botonGuardar">
 
                             <i class="bi bi-floppy"></i>
                             Guardar cambios

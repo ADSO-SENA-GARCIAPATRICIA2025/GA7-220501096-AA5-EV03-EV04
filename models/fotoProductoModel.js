@@ -5,7 +5,7 @@ export const obtenerFotos = async () => {
     const [fotos] = await db.query(`
         SELECT
             id_foto,
-            url_foto,
+            urlFoto,
             orden,
             estadoActivo,
             id_producto
@@ -21,7 +21,7 @@ export const obtenerFotoPorId = async (id) => {
     const [fotos] = await db.query(`
         SELECT
             id_foto,
-            url_foto,
+            urlFoto,
             orden,
             estadoActivo,
             id_producto
@@ -36,7 +36,7 @@ export const obtenerFotoPorId = async (id) => {
 // POST - Crear foto
 export const crearFoto = async (foto) => {
     const {
-        url_foto,
+        urlFoto,
         orden,
         id_producto
     } = foto;
@@ -44,13 +44,13 @@ export const crearFoto = async (foto) => {
     const [resultado] = await db.query(`
         INSERT INTO foto_producto
         (
-            url_foto,
+            urlFoto,
             orden,
             id_producto
         )
         VALUES (?, ?, ?)
     `, [
-        url_foto,
+        urlFoto,
         orden,
         id_producto
     ]);
@@ -62,7 +62,7 @@ export const crearFoto = async (foto) => {
 // PUT - Actualizar foto
 export const actualizarFoto = async (id, foto) => {
     const {
-        url_foto,
+        urlFoto,
         orden,
         estadoActivo,
         id_producto
@@ -71,13 +71,13 @@ export const actualizarFoto = async (id, foto) => {
     const [resultado] = await db.query(`
         UPDATE foto_producto
         SET
-            url_foto = ?,
+            urlFoto = ?,
             orden = ?,
             estadoActivo = ?,
             id_producto = ?
         WHERE id_foto = ?
     `, [
-        url_foto,
+        urlFoto,
         orden,
         estadoActivo,
         id_producto,
@@ -96,4 +96,17 @@ export const eliminarFoto = async (id) => {
     `, [id]);
 
     return resultado.affectedRows;
+};
+
+// GET - Fotos de un producto, en el orden definido para su galería
+export const obtenerFotosPorProducto = async (idProducto) => {
+    const [fotos] = await db.query(`
+        SELECT id_foto, urlFoto, orden, estadoActivo, id_producto
+        FROM foto_producto
+        WHERE id_producto = ?
+            AND estadoActivo = 1
+        ORDER BY orden ASC, id_foto ASC
+    `, [idProducto]);
+
+    return fotos;
 };

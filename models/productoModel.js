@@ -123,10 +123,23 @@ export const actualizarProducto = async (id, producto) => {
 
 //DELETE 
 export const eliminarProducto = async (id) => {
-    const [resultado] = await db.query(`
-        DELETE FROM producto
-        WHERE id_producto = ?
-    `, [id]);
+    // Las variantes y fotos dependen del producto. Se borran en una transacción
+    // para no dejar datos relacionados sin su producto.
+    await db.beginTransaction();
 
-    return resultado.affectedRows;
+    try {
+        await db.query('DELETE FROM foto_producto WHERE id_producto = ?', [id]);
+        await db.query('DELETE FROM variante_producto WHERE id_producto = ?', [id]);
+
+        const [resultado] = await db.query(`
+            DELETE FROM producto
+            WHERE id_producto = ?
+        `, [id]);
+
+        await db.commit();
+        return resultado.affectedRows;
+    } catch (error) {
+        await db.rollback();
+        throw error;
+    }
 };

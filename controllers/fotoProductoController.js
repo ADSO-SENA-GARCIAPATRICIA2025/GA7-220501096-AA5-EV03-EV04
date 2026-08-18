@@ -1,5 +1,6 @@
 import {
     obtenerFotos,
+    obtenerFotosPorProducto,
     obtenerFotoPorId,
     crearFoto,
     actualizarFoto,
@@ -116,5 +117,15 @@ export const borrarFoto = async (req, res) => {
         res.status(500).json({
             mensaje: 'Error al eliminar la foto'
         });
+    }
+};
+
+export const listarFotosPorProducto = async (req, res) => {
+    try {
+        const fotos = await obtenerFotosPorProducto(req.params.productoId);
+        res.status(200).json(fotos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al obtener las fotos del producto' });
     }
 };

@@ -40,10 +40,31 @@ const cargarVariantes = async (productoId) => {
     `).join('');
 };
 
+const cargarFotos = async (productoId) => {
+    const respuesta = await fetch(`/api/fotos/producto/${productoId}`);
+    if (!respuesta.ok) throw new Error('No se pudieron cargar las imágenes');
+
+    const fotos = await respuesta.json();
+    const seccionFotos = document.getElementById('seccionFotos');
+    const galeriaFotos = document.getElementById('galeriaFotos');
+    seccionFotos.hidden = false;
+
+    if (fotos.length === 0) {
+        galeriaFotos.innerHTML = '<p class="sin-fotos">Este producto todavía no tiene imágenes registradas.</p>';
+        return;
+    }
+
+    galeriaFotos.innerHTML = fotos.map((foto) => `
+        <img src="${foto.urlFoto}" alt="Foto ${foto.orden} del producto" class="foto-producto">
+    `).join('');
+};
+
 const cargarProducto = async () => {
     await cargarCategorias();
     if (!idProducto) {
         document.getElementById('tituloFormulario').textContent = 'Crear producto';
+        document.getElementById('descripcionFormulario').textContent = 'Registra la información principal del nuevo producto.';
+        document.getElementById('botonGuardar').innerHTML = '<i class="bi bi-plus-lg"></i> Crear producto';
         return;
     }
 
@@ -60,6 +81,7 @@ const cargarProducto = async () => {
     document.getElementById('descripcion').value = producto.descripcion;
     await cargarCategorias(producto.id_categoria);
     await cargarVariantes(producto.id_producto);
+    await cargarFotos(producto.id_producto);
 };
 
 const datosProducto = () => ({
