@@ -6,8 +6,28 @@ const urlVolver = `./variantes.html?productoId=${productoId}`;
 document.getElementById('volverVariantes').href = urlVolver;
 document.getElementById('cancelarVariante').href = urlVolver;
 
+const datosVariante = () => ({
+    talla: document.getElementById('talla').value,
+    color: document.getElementById('color').value,
+    stockActual: Number(document.getElementById('stockActual').value),
+    estadoActivo: Number(document.getElementById('estadoActivo').value),
+    id_producto: Number(productoId)
+});
+
+const configurarModoCrear = () => {
+    document.title = 'Nueva variante - Footsy';
+    document.getElementById('tituloFormulario').textContent = 'Nueva variante producto';
+    document.getElementById('descripcionFormulario').textContent = 'Registra una nueva talla, color y existencias para este producto.';
+    document.getElementById('botonGuardar').innerHTML = '<i class="bi bi-plus-lg"></i> Crear variante';
+};
+
 const cargarVariante = async () => {
-    if (!varianteId || !productoId) throw new Error('Falta la variante o el producto');
+    if (!productoId) throw new Error('Falta el producto');
+    if (!varianteId) {
+        configurarModoCrear();
+        return;
+    }
+
     const respuesta = await fetch(`/api/variantes/${varianteId}`);
     if (!respuesta.ok) throw new Error('No se pudo cargar la variante');
 
@@ -21,19 +41,18 @@ const cargarVariante = async () => {
 document.getElementById('formVariante').addEventListener('submit', async (evento) => {
     evento.preventDefault();
     try {
-        const respuesta = await fetch(`/api/variantes/${varianteId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                talla: document.getElementById('talla').value,
-                color: document.getElementById('color').value,
-                stockActual: Number(document.getElementById('stockActual').value),
-                estadoActivo: Number(document.getElementById('estadoActivo').value),
-                id_producto: Number(productoId)
-            })
-        });
+        const respuesta = await fetch(
+            varianteId ? `/api/variantes/${varianteId}` : '/api/variantes',
+            {
+                method: varianteId ? 'PUT' : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datosVariante())
+            }
+        );
         const resultado = await respuesta.json();
-        if (!respuesta.ok) throw new Error(resultado.mensaje || 'No se pudo actualizar la variante');
+        if (!respuesta.ok) {
+            throw new Error(resultado.mensaje || 'No se pudo guardar la variante');
+        }
         window.location.href = urlVolver;
     } catch (error) {
         console.error(error);

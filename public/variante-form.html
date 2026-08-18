@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar variante - Footsy</title>
+    <title id="tituloPagina">Editar variante - Footsy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -12,8 +12,8 @@
     <main class="main-content">
         <div class="page-header">
             <div>
-                <h1>Editar variante</h1>
-                <p>Actualiza la talla, el color, las existencias o el estado.</p>
+                <h1 id="tituloFormulario">Editar variante</h1>
+                <p id="descripcionFormulario">Actualiza la talla, el color, las existencias o el estado.</p>
             </div>
             <a id="volverVariantes" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Volver a variantes
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-actions">
                     <a id="cancelarVariante" class="btn btn-outline-secondary">Cancelar</a>
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary" type="submit" id="botonGuardar">
                         <i class="bi bi-floppy"></i> Guardar cambios
                     </button>
                 </div>

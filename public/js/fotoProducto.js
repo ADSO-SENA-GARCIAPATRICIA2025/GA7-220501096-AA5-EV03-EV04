@@ -2,6 +2,7 @@ const parametros = new URLSearchParams(window.location.search);
 const productoId = parametros.get('productoId') || '1';
 const resumenProducto = document.getElementById('resumenProducto');
 const listaFotos = document.getElementById('listaFotos');
+document.getElementById('nuevaFoto').href = `./fotoProducto-form.html?productoId=${productoId}`;
 
 const cargarProducto = async () => {
     const respuesta = await fetch(`/api/productos/${productoId}`);
