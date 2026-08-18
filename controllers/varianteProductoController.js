@@ -1,5 +1,6 @@
 import {
     obtenerVariantes,
+    obtenerVariantesPorProducto,
     obtenerVariantePorId,
     crearVariante,
     actualizarVariante,
@@ -116,5 +117,15 @@ export const borrarVariante = async (req, res) => {
         res.status(500).json({
             mensaje: 'Error al eliminar la variante'
         });
+    }
+};
+
+export const listarVariantesPorProducto = async (req, res) => {
+    try {
+        const variantes = await obtenerVariantesPorProducto(req.params.productoId);
+        res.status(200).json(variantes);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al obtener las variantes del producto' });
     }
 };

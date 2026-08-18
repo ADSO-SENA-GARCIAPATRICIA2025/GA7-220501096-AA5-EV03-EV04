@@ -2,6 +2,7 @@ import express from 'express';
 
 import {
     listarVariantes,
+    listarVariantesPorProducto,
     buscarVariantePorId,
     registrarVariante,
     modificarVariante,
@@ -11,6 +12,7 @@ import {
 const router = express.Router();
 
 router.get('/', listarVariantes);
+router.get('/producto/:productoId', listarVariantesPorProducto);
 router.get('/:id', buscarVariantePorId);
 router.post('/', registrarVariante);
 router.put('/:id', modificarVariante);

@@ -33,7 +33,7 @@
             <nav>
 
 
-    <a href="#" class="active">
+    <a href="#">
         <i class="bi bi-house"></i>
         Dashboard
     </a>
@@ -42,7 +42,7 @@
         Tienda Virtual
     </p>
 
-    <a href="#" >
+    <a href="#" class="active">
         <i class="bi bi-grid"></i>
         Productos
     </a>
@@ -110,51 +110,51 @@
             <!-- MAIN -->
             <main>
 
-                <h1>Dashboard</h1>
+                <h1>Productos</h1>
 
-               <div class="dashboard-grid">
+                <section class="product-panel">
 
-    <a href="./producto.html" class="dashboard-card">
-        <i class="bi bi-grid"></i>
-        <span>Productos</span>
-    </a>
+                    <div class="panel-header">
 
-    <a href="/categorias" class="dashboard-card">
-        <i class="bi bi-box"></i>
-        <span>Categorías</span>
-    </a>
+                        <h2>Lista Productos</h2>
 
-    <a href="/pedidos" class="dashboard-card">
-        <i class="bi bi-bag"></i>
-        <span>Pedidos</span>
-    </a>
+                        <input
+                            type="search"
+                            placeholder="Buscar producto..."
+                        >
 
-    <a href="/pagos" class="dashboard-card">
-        <i class="bi bi-credit-card"></i>
-        <span>Pagos</span>
-    </a>
+                    </div>
 
-    <a href="/reportes" class="dashboard-card">
-        <i class="bi bi-bar-chart"></i>
-        <span>Reportes</span>
-    </a>
 
-    <a href="/envios" class="dashboard-card">
-        <i class="bi bi-truck"></i>
-        <span>Envíos</span>
-    </a>
+                    <div class="table-container">
 
-    <a href="/usuarios" class="dashboard-card">
-        <i class="bi bi-people"></i>
-        <span>Usuarios</span>
-    </a>
+                        <table>
 
-    <a href="/configuraciones" class="dashboard-card">
-        <i class="bi bi-gear"></i>
-        <span>Configuraciones</span>
-    </a>
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Público</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
 
-</div>
+                            <tbody id="listaProductos">
+
+                                <!-- informacion de javascript js/productos.js -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
             </main>
 
         </div>
@@ -163,7 +163,8 @@
 
 
     
-    
+     <script src="./js/productos.js"></script>
+
 </body>
 
 </html>

@@ -105,3 +105,14 @@ export const eliminarVariante = async (id) => {
 
     return resultado.affectedRows;
 };
+
+// GET - Variantes de un producto
+export const obtenerVariantesPorProducto = async (idProducto) => {
+    const [variantes] = await db.query(`
+        SELECT id_varianteProducto, talla, color, stockActual, estadoActivo, id_producto
+        FROM variante_producto
+        WHERE id_producto = ?
+    `, [idProducto]);
+
+    return variantes;
+};

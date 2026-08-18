@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Producto - Footsy</title>
+
+    <!-- Nuestro CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+             <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                Footsy
+            </div>
+
+            <nav>
+
+
+    <a href="#">
+        <i class="bi bi-house"></i>
+        Dashboard
+    </a>
+
+    <p class="menu-title">
+        Tienda Virtual
+    </p>
+
+    <a href="./producto.html" class="active">
+        <i class="bi bi-grid"></i>
+        Productos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-box"></i>
+        Categorías
+    </a>
+
+    <a href="#">
+        <i class="bi bi-bag"></i>
+        Pedidos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-credit-card"></i>
+        Pagos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-bar-chart"></i>
+        Reportes
+    </a>
+
+    <a href="#">
+        <i class="bi bi-truck"></i>
+        Envíos
+    </a>
+
+    <a href="#">
+        <i class="bi bi-people"></i>
+        Usuarios
+    </a>
+
+    <a href="#">
+        <i class="bi bi-gear"></i>
+        Configuraciones
+    </a>
+
+</nav>
+
+        </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content" style="margin:80px ;">
+
+            <!-- ENCABEZADO -->
+            <div class="page-header">
+
+                <div>
+                    <h1 id="tituloFormulario">Editar producto</h1>
+                    <p>Modifica la información del producto seleccionado.</p>
+                </div>
+
+                <a href="./producto.html"
+                   class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i>
+                    Volver
+                </a>
+
+            </div>
+
+
+            <!-- FORMULARIO -->
+            <div class="form-card">
+
+                <form id="formProducto">
+
+                    <!-- Guardaremos aquí el ID -->
+                    <input type="hidden" id="idProducto">
+
+
+                    <div class="form-grid">
+
+                        <!-- CÓDIGO -->
+                        <div class="form-group">
+                            <label for="codigoProducto">
+                                Código
+                            </label>
+
+                            <input type="text"
+                                   id="codigoProducto"
+                                   name="codigoProducto"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+
+                        <!-- NOMBRE -->
+                        <div class="form-group">
+                            <label for="nombreProducto">
+                                Nombre del producto
+                            </label>
+
+                            <input type="text"
+                                   id="nombreProducto"
+                                   name="nombreProducto"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+
+                        <!-- MARCA -->
+                        <div class="form-group">
+                            <label for="marca">
+                                Marca
+                            </label>
+
+                            <input type="text"
+                                   id="marca"
+                                   name="marca"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+
+                        <!-- PRECIO -->
+                        <div class="form-group">
+                            <label for="precioVenta">
+                                Precio de venta
+                            </label>
+
+                            <input type="number"
+                                   id="precioVenta"
+                                   name="precioVenta"
+                                   class="form-control"
+                                   step="0.01"
+                                   min="0"
+                                   required>
+                        </div>
+
+
+                        <!-- CATEGORÍA -->
+                        <div class="form-group">
+                            <label for="id_categoria">
+                                Categoría
+                            </label>
+
+                            <select id="id_categoria"
+                                    name="id_categoria"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    Seleccione una categoría
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <!-- PÚBLICO OBJETIVO -->
+                        <div class="form-group">
+                            <label for="publicoObjetivo">
+                                Público objetivo
+                            </label>
+
+                            <select id="publicoObjetivo"
+                                    name="publicoObjetivo"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    Seleccione
+                                </option>
+
+                                <option value="hombre">Hombre</option>
+                                <option value="mujer">Mujer</option>
+                                <option value="unisex">Unisex</option>
+                                <option value="infantil">Infantil</option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESCRIPCIÓN -->
+                    <div class="form-group descripcion">
+                        <label for="descripcion">
+                            Descripción
+                        </label>
+
+                        <textarea id="descripcion"
+                                  name="descripcion"
+                                  class="form-control"
+                                  rows="4"></textarea>
+                    </div>
+
+                    <!-- VARIANTES: un producto puede tener muchas -->
+                    <section id="seccionVariantes" hidden>
+                        <h2 class="mt-4">Variantes del producto</h2>
+                        <p>Estas variantes pertenecen a este producto. Se muestran solo para consulta.</p>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Talla</th>
+                                        <th>Color</th>
+                                        <th>Stock</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaVariantes"></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+
+                    <!-- BOTONES -->
+                    <div class="form-actions">
+
+                        <a href="./producto.html"
+                           class="btn btn-outline-secondary">
+                            Cancelar
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary">
+
+                            <i class="bi bi-floppy"></i>
+                            Guardar cambios
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- JS -->
+   <script src="./js/producto-form.js"></script>
+
+</body>
+
+</html>

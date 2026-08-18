@@ -1,8 +1,10 @@
+
 const listaProductos = document.getElementById('listaProductos');
+
 
 const cargarProductos = async () => {
     try {
-        const respuesta = await fetch('/productos');
+        const respuesta = await fetch('/api/productos');
         const productos = await respuesta.json();
 
         listaProductos.innerHTML = '';
@@ -20,11 +22,11 @@ const cargarProductos = async () => {
                             <td>
                                
 
-                                <button onclick="editarProducto(${producto.id_producto})"
+                               <a href="./producto-form.html?id=${producto.id_producto}"
                                     class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil"> Editar</i>
-                                </button>
-                                <button 
+                                        <i class="bi bi-pencil"></i> Editar
+                                    </a>
+                                <button
                                     class="btn btn-danger btn-sm">
                                     <i class="bi bi-trash"> Eliminar</i>
                                 </button>

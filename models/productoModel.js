@@ -13,6 +13,7 @@ export const obtenerProductos = async () => {
             p.publicoObjetivo,
             p.estadoActivo,
             p.fechaCreacion,
+            p.id_categoria,
             c.nombre AS categoria
         FROM producto p
         INNER JOIN categoria c
@@ -35,10 +36,11 @@ export const obtenerProductoPorId = async (id) => {
             p.publicoObjetivo,
             p.estadoActivo,
             p.fechaCreacion,
+            p.id_categoria,
             c.nombre AS categoria
         FROM producto p
         INNER JOIN categoria c
-            ON p.id_categoria = c.id_categoria
+        ON p.id_categoria = c.id_categoria
         WHERE p.id_producto = ?
     `, [id]);
 
