@@ -10,9 +10,7 @@ body {
 }
 
 
-/* =========================
-   LAYOUT
-========================= */
+/* LAYOUT */
 
 .layout {
     display: flex;
@@ -20,9 +18,7 @@ body {
 }
 
 
-/* =========================
-   SIDEBAR
-========================= */
+/*  SIDEBAR*/
 
 .sidebar {
     width: 260px;
@@ -69,18 +65,14 @@ body {
 }
 
 
-/* =========================
-   CONTENIDO
-========================= */
+/*   CONTENIDO */
 
 .content {
     flex: 1;
 }
 
 
-/* =========================
-   TOPBAR
-========================= */
+/*  TOPBAR */
 
 .topbar {
     height: 75px;
@@ -122,9 +114,7 @@ body {
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN*/
 
 main {
     padding: 40px;
@@ -193,9 +183,8 @@ h1 {
 }
 
 
-/* =========================
-   PANEL PRODUCTOS
-========================= */
+/*  PANEL PRODUCTOS*/
+
 
 .product-panel {
     background-color: white;
@@ -209,9 +198,9 @@ h1 {
 }
 
 
-/* =========================
-   CABECERA PANEL
-========================= */
+
+   /*CABECERA PANEL*/
+
 
 .panel-header {
     padding: 20px 25px;
